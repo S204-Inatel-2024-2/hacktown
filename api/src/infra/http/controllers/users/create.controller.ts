@@ -24,6 +24,8 @@ export class CreateController {
   async handle(@Body() body: CreateBodySchema) {
     const { username, email, password, role } = body
 
+    console.log(body)
+
     const result = await this.createUseCase.execute({
       username,
       email,
