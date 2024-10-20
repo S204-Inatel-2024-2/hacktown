@@ -26,5 +26,6 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: 'registrationDate',
     header: 'Data de registro',
+    cell: ({ row }) => new Date(row.original.registrationDate).toLocaleDateString(),
   },
 ];

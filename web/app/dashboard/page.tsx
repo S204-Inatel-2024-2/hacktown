@@ -29,7 +29,7 @@ export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="p-12 space-y-10">
+    <div className="p-12 space-y-10 container">
       <div className="flex flex-row justify-between">
         <h1 className="text-3xl font-bold">Usuários</h1>
         <CreateUser />
