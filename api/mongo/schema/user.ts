@@ -109,6 +109,9 @@ export class User {
     rating: number;
     comment: string;
   }[];
+
+  @Prop({ type: Types.ObjectId, ref: 'Event' })
+  event?: Types.ObjectId;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

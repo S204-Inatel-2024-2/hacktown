@@ -8,7 +8,7 @@ export class Venue {
   @Prop({ type: Types.ObjectId, auto: true })
   _id?: Types.ObjectId;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   name: string;
 
   @Prop({ required: true })
@@ -21,7 +21,7 @@ export class Venue {
   event: Types.ObjectId; // Referência para o evento
 
   @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }] })
-  staffLeaders: Types.ObjectId[]; // Líderes de staff associados ao local
+  staffLeaders?: Types.ObjectId[]; // Líderes de staff associados ao local
 }
 
 export const VenueSchema = SchemaFactory.createForClass(Venue);
