@@ -1,3 +1,5 @@
+'use server';
+
 import { createVenue } from '@/app/_actions/create-venue';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@radix-ui/react-label';
 
-export function CreateVenue() {
+export async function CreateVenue() {
   return (
     <Dialog>
       <DialogTrigger asChild>
