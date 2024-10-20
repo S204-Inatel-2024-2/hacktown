@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { CreateUser } from './(users)/create-user';
 
 async function getData(): Promise<User[]> {
-  const token = cookies().get('token');
+  const token = cookies().get('token')?.value;
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
     headers: {
@@ -16,6 +16,7 @@ async function getData(): Promise<User[]> {
   });
 
   if (!response.ok) {
+    console.log(response.status);
     throw new Error('Failed to fetch data');
   }
 
