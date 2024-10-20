@@ -4,13 +4,15 @@ import { DatabaseModule } from "src/infra/database/database.module";
 import { AuthenticateController } from "./authenticate.controller";
 import { AuthenticateUseCase } from "src/domain/event/application/use-cases/users/authenticate.service";
 import { CreateController } from "./create.controller";
-import { CreateUseCase } from "src/domain/event/application/use-cases/users/create.service";
+import { CreateUserUseCase } from "src/domain/event/application/use-cases/users/create.service";
 import { ListController } from "./list.controller";
 import { ListUseCase } from "src/domain/event/application/use-cases/users/list.service";
+import { UpdateController } from "./update.controller";
+import { UpdateUserUseCase } from "src/domain/event/application/use-cases/users/update.service";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
-  controllers: [AuthenticateController, CreateController, ListController],
-  providers: [AuthenticateUseCase, CreateUseCase, ListUseCase],
+  controllers: [AuthenticateController, CreateController, ListController, UpdateController],
+  providers: [AuthenticateUseCase, CreateUserUseCase, ListUseCase, UpdateUserUseCase],
 })
 export class UsersModule {}
