@@ -1,29 +1,9 @@
+'use server';
+
 import { DataTable } from '@/components/data-table';
-import { cookies } from 'next/headers';
-import { User, columns } from './(components)/columns';
+import { columns } from './(components)/columns';
 import { CreateUser } from './(components)/create-user';
-
-export async function getData(): Promise<User[]> {
-  const token = cookies().get('token')?.value;
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    next: {
-      tags: ['users'],
-    },
-  });
-
-  if (!response.ok) {
-    console.log(response.status);
-    throw new Error('Failed to fetch data');
-  }
-
-  const data = await response.json();
-
-  return data.users;
-}
+import { getData } from '@/app/_actions/list-users';
 
 export default async function Page() {
   const data = await getData();

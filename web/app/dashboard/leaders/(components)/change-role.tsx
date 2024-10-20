@@ -12,7 +12,7 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { changeRole } from '@/app/_actions/change-role';
 import { User } from './columns';
-import { getData } from '../../users/page';
+import { getData } from '@/app/_actions/list-users';
 
 export async function ChangeRole() {
   const data = await getData();
