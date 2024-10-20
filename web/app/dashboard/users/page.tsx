@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { User, columns } from './(components)/columns';
 import { CreateUser } from './(components)/create-user';
 
-async function getData(): Promise<User[]> {
+export async function getData(): Promise<User[]> {
   const token = cookies().get('token')?.value;
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {

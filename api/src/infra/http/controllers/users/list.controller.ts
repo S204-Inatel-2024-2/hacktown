@@ -1,14 +1,20 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 import { ListUseCase } from "src/domain/event/application/use-cases/users/list.service";
-import { Public } from "src/infra/auth/public";
+import { z } from "zod";
 
-@Controller('/users')
+const listParamsSchema = z.object({
+  role: z.enum(['admin', 'organizer', 'staff_leader', 'staff', 'speaker', 'participant']).optional(),
+})
+
+type ListParamsSchema = z.infer<typeof listParamsSchema>
+
+@Controller('/users/:role?')
 export class ListController {
   constructor(private listUseCase: ListUseCase) {}
 
   @Get()
-  async handle() {
-    const result = await this.listUseCase.execute()
+  async handle(@Param() params: ListParamsSchema) {
+    const result = await this.listUseCase.execute(params)
 
     const { users } = result
 

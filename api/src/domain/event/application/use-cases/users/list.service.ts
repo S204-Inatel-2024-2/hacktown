@@ -2,6 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { UsersRepository } from "../../repositories/users-repository";
 import { User } from "mongo/schema/user";
 
+type ListUseCaseRequest = {
+  role?: string;
+}
+
 type ListUseCaseResponse = {
   users: User[];
 }
@@ -12,8 +16,8 @@ export class ListUseCase {
     private usersRepository: UsersRepository,
   ) {}
 
-  async execute(): Promise<ListUseCaseResponse> {
-    const users = await this.usersRepository.list()
+  async execute({ role }: ListUseCaseRequest): Promise<ListUseCaseResponse> {
+    const users = await this.usersRepository.list(role)
 
     return {
       users,

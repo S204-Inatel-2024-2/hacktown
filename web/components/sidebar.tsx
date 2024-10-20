@@ -22,19 +22,19 @@ export const Sidebar = () => {
             </a>
           </li>
           <li
-            className={`p-4 ${location === '/dashboard/venues' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
-          >
-            <a href="/dashboard/venues" className="flex gap-2">
-              <MapPinned size={20} />
-              Venues
-            </a>
-          </li>
-          <li
             className={`p-4 ${location === '/dashboard/leaders' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
           >
             <a href="/dashboard/leaders" className="flex gap-2">
               <Crown size={20} />
               Líderes
+            </a>
+          </li>
+          <li
+            className={`p-4 ${location === '/dashboard/venues' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
+          >
+            <a href="/dashboard/venues" className="flex gap-2">
+              <MapPinned size={20} />
+              Venues
             </a>
           </li>
         </ul>

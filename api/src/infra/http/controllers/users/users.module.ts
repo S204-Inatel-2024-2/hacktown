@@ -9,10 +9,12 @@ import { ListController } from "./list.controller";
 import { ListUseCase } from "src/domain/event/application/use-cases/users/list.service";
 import { UpdateController } from "./update.controller";
 import { UpdateUserUseCase } from "src/domain/event/application/use-cases/users/update.service";
+import { ChangeRoleController } from "./change-role.controller";
+import { ChangeRoleUseCase } from "src/domain/event/application/use-cases/users/change-role.service";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
-  controllers: [AuthenticateController, CreateController, ListController, UpdateController],
-  providers: [AuthenticateUseCase, CreateUserUseCase, ListUseCase, UpdateUserUseCase],
+  controllers: [AuthenticateController, CreateController, ListController, UpdateController, ChangeRoleController],
+  providers: [AuthenticateUseCase, CreateUserUseCase, ListUseCase, UpdateUserUseCase, ChangeRoleUseCase],
 })
 export class UsersModule {}

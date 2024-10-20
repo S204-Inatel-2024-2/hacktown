@@ -24,6 +24,10 @@ export class MongoUsersRepository implements UsersRepository {
     return this.userModel.find({ role }).exec();
   }
 
+  changeRole(user: UpdateUser): Promise<User> {
+    return this.userModel.findOneAndUpdate({ email: user.email }, { role: user.role }, { new: true }).exec();
+  }
+
   create(user: User): Promise<User> {
     return this.userModel.create({
       _id: new Types.ObjectId(),
@@ -32,15 +36,18 @@ export class MongoUsersRepository implements UsersRepository {
   }
 
   async update(user: UpdateUser): Promise<User> {
-    const { _id } = await this.userModel.findOne({ email: user.email }).exec();
-    return this.userModel.findByIdAndUpdate(_id, user, { new: true }).exec();
+    return this.userModel.findOneAndUpdate({ email: user.email }, user, { new: true }).exec();
   }
 
   delete(id: string): void {
     this.userModel.findByIdAndDelete(id).exec();
   }
 
-  list(): Promise<User[]> {
-    return this.userModel.find().exec();
+  list(role?: string): Promise<User[]> {
+    if (!role) {
+      return this.userModel.find().exec();
+    }
+    
+    return this.userModel.find({ role: role }).exec();
   }
 }
