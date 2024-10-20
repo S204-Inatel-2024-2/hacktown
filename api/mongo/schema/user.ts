@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, SchemaFactory,Schema } from "@nestjs/mongoose";
 import { HydratedDocument, Types } from "mongoose";
 
 export type UserDocument = HydratedDocument<User>;
@@ -7,7 +7,7 @@ export type UserDocument = HydratedDocument<User>;
 export class User {
   @Prop({ type: Types.ObjectId, auto: true })
   _id?: Types.ObjectId;
-  
+
   @Prop({ required: true, unique: true })
   username: string;
 
@@ -25,6 +25,86 @@ export class User {
 
   @Prop({ default: () => new Date() })
   registrationDate: Date;
+
+  @Prop()
+  phone?: string;
+
+  @Prop({
+    street: String,
+    city: String,
+    state: String,
+    zipCode: String,
+    country: String,
+  })
+  address?: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+
+  @Prop()
+  birthdate?: Date;
+
+  @Prop()
+  gender?: 'male' | 'female' | 'non-binary' | 'prefer_not_to_say';
+
+  @Prop()
+  identification?: string;
+
+  @Prop()
+  company?: string;
+
+  @Prop()
+  jobTitle?: string;
+
+  @Prop()
+  linkedinProfile?: string;
+
+  @Prop()
+  industry?: string;
+
+  @Prop({ type: [String] })
+  interests?: string[];
+
+  @Prop()
+  tShirtSize?: 'S' | 'M' | 'L' | 'XL' | 'XXL';
+
+  @Prop({ type: [String] })
+  dietaryRestrictions?: string[];
+
+  @Prop()
+  specialNeeds?: string;
+
+  @Prop({ 
+    email: Boolean, 
+    sms: Boolean, 
+    whatsapp: Boolean 
+  })
+  communicationPreferences?: {
+    email: boolean;
+    sms: boolean;
+    whatsapp: boolean;
+  };
+
+  @Prop({ default: false })
+  newsletterSubscription?: boolean;
+
+  @Prop({ type: [Types.ObjectId], ref: 'Event' })
+  previousParticipations?: Types.ObjectId[];
+
+  @Prop({ type: [Types.ObjectId], ref: 'Talk' })
+  attendedTalks?: Types.ObjectId[];
+
+  @Prop({
+    type: [{ talkId: Types.ObjectId, rating: Number, comment: String }],
+  })
+  feedback?: {
+    talkId: Types.ObjectId;
+    rating: number;
+    comment: string;
+  }[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
