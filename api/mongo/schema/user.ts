@@ -30,11 +30,13 @@ export class User {
   phone?: string;
 
   @Prop({
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    country: String,
+    type: {
+      street: String,
+      city: String,
+      state: String,
+      zipCode: String,
+      country: String,
+    }
   })
   address?: {
     street: string;
@@ -78,9 +80,11 @@ export class User {
   specialNeeds?: string;
 
   @Prop({ 
-    email: Boolean, 
-    sms: Boolean, 
-    whatsapp: Boolean 
+    type: {
+      email: Boolean, 
+      sms: Boolean, 
+      whatsapp: Boolean
+    } 
   })
   communicationPreferences?: {
     email: boolean;
