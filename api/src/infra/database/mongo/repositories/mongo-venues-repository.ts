@@ -8,7 +8,7 @@ import { Model, Types } from "mongoose";
 export class MongoVenuesRepository implements VenuesRepository {
   constructor(@InjectModel(Venue.name) private venueModel: Model<Venue>) {}
 
-  async findById(id: string): Promise<Venue | null> {
+  async findById(id: Types.ObjectId): Promise<Venue | null> {
     return this.venueModel.findById(id).exec();
   }
 
@@ -32,6 +32,6 @@ export class MongoVenuesRepository implements VenuesRepository {
   }
 
   async list(): Promise<Venue[]> {
-    return this.venueModel.find().exec();
+    return this.venueModel.find().lean().exec();
   }
 }

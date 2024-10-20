@@ -9,7 +9,7 @@ export interface UpdateUser {
 }
 
 export abstract class UsersRepository {
-  abstract findById(id: string): Promise<User | null>;
+  abstract findById(id: Types.ObjectId): Promise<User | null>;
   abstract findByUsername(username: string): Promise<User | null>;
   abstract findByEmail(email: string): Promise<User | null>;
   abstract findByRole(role: string): Promise<User[]>;

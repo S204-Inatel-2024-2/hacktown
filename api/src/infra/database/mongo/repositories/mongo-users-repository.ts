@@ -8,7 +8,7 @@ import { UpdateUser, UsersRepository } from "src/domain/event/application/reposi
 export class MongoUsersRepository implements UsersRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  findById(id: string): Promise<User | null> {
+  findById(id: Types.ObjectId): Promise<User | null> {
     return this.userModel.findById(id).exec();
   }
 
