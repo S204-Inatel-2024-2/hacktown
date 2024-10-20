@@ -1,32 +1,38 @@
-import { BadRequestException, Body, Controller, Post, UsePipes } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post, Req, UsePipes } from "@nestjs/common";
 import { CreateVenueUseCase } from "src/domain/event/application/use-cases/venues/create.service";
 import { z } from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation.pipe";
 import { Types } from "mongoose";
+import { JwtService } from "@nestjs/jwt";
+import { UserPayload } from "src/infra/auth/jwt-strategy";
 
 const createBodySchema = z.object({
   name: z.string(),
   address: z.string(),
-  capacity: z.number().optional(),
-  event: z.string(),
+  capacity: z.string().optional(),
 })
 
 type CreateBodySchema = z.infer<typeof createBodySchema>
 
 @Controller('/venue')
 export class CreateVenueController {
-  constructor(private createUseCase: CreateVenueUseCase) {}
+  constructor(private createUseCase: CreateVenueUseCase, private jwtUseCase: JwtService) {}
 
   @Post()
   @UsePipes(new ZodValidationPipe(createBodySchema))
-  async handle(@Body() body: CreateBodySchema) {
-    const { name, address, capacity, event } = body
+  async handle(@Body() body: CreateBodySchema, @Req() request: Request) {
+    const { name, address, capacity } = body
+    const token = request.headers['authorization'].split(' ')[1]
+    const decoded: UserPayload = this.jwtUseCase.decode(token)
+
+    console.log(decoded)
+    console.log(body)
 
     const result = await this.createUseCase.execute({
       name,
       address,
-      capacity,
-      event: new Types.ObjectId(event),
+      capacity: Number(capacity),
+      event: new Types.ObjectId(decoded.event),
     })
 
     if (result.isLeft()) {

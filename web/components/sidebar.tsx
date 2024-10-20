@@ -1,10 +1,10 @@
 'use client';
 
 import { Crown, MapPinned, Users } from 'lucide-react';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const Sidebar = () => {
-  const [isSelected, setIsSelected] = useState('');
+  const location = usePathname();
 
   return (
     <section className="bg-black text-white min-w-64 h-screen space-y-2">
@@ -14,25 +14,28 @@ export const Sidebar = () => {
       <nav className="pl-5">
         <ul>
           <li
-            onClick={() => setIsSelected('Usuários')}
-            className={`p-4 cursor-pointer flex gap-2  ${isSelected === 'Usuários' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
+            className={`p-4 ${location === '/dashboard/users' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
           >
-            <Users size={20} />
-            Usuários
+            <a href="/dashboard/users" className="flex gap-2">
+              <Users size={20} />
+              Usuários
+            </a>
           </li>
           <li
-            onClick={() => setIsSelected('Venues')}
-            className={`p-4 cursor-pointer flex gap-2  ${isSelected === 'Venues' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
+            className={`p-4 ${location === '/dashboard/venues' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
           >
-            <MapPinned size={20} />
-            Venues
+            <a href="/dashboard/venues" className="flex gap-2">
+              <MapPinned size={20} />
+              Venues
+            </a>
           </li>
           <li
-            onClick={() => setIsSelected('Líderes')}
-            className={`p-4 cursor-pointer flex gap-2  ${isSelected === 'Líderes' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
+            className={`p-4 ${location === '/dashboard/leaders' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
           >
-            <Crown size={20} />
-            Líderes
+            <a href="/dashboard/leaders" className="flex gap-2">
+              <Crown size={20} />
+              Líderes
+            </a>
           </li>
         </ul>
       </nav>

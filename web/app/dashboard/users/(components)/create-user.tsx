@@ -1,6 +1,13 @@
 import { createUser } from '@/app/_actions/create-user';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@radix-ui/react-label';
 
@@ -27,7 +34,9 @@ export function CreateUser() {
             <Label htmlFor="password">Senha</Label>
             <Input id="password" name="password" type="password" />
           </div>
-          <Button type="submit">Criar</Button>
+          <DialogClose>
+            <Button type="submit">Criar</Button>
+          </DialogClose>
         </form>
       </DialogContent>
     </Dialog>

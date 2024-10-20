@@ -6,6 +6,8 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 
 const tokenPayloadSchema = z.object({
   sub: z.string(),
+  role: z.enum(['admin', 'organizer', 'staff_leader', 'staff', 'speaker', 'participant']),
+  event: z.string(),
 })
 
 export type UserPayload = z.infer<typeof tokenPayloadSchema>
