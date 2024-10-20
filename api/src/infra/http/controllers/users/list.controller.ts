@@ -7,7 +7,6 @@ export class ListController {
   constructor(private listUseCase: ListUseCase) {}
 
   @Get()
-  @Public()
   async handle() {
     const result = await this.listUseCase.execute()
 
