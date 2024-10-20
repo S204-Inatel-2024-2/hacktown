@@ -14,7 +14,7 @@ import { Label } from '@radix-ui/react-label';
 export function CreateVenue() {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>Novo venue</Button>
       </DialogTrigger>
       <DialogContent>
@@ -34,7 +34,7 @@ export function CreateVenue() {
             <Label htmlFor="capacity">Capacidade</Label>
             <Input id="capacity" name="capacity" type="number" />
           </div>
-          <DialogClose>
+          <DialogClose asChild>
             <Button type="submit">Criar</Button>
           </DialogClose>
         </form>

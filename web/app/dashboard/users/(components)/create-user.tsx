@@ -14,7 +14,7 @@ import { Label } from '@radix-ui/react-label';
 export function CreateUser() {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>Novo usuário</Button>
       </DialogTrigger>
       <DialogContent>
@@ -34,7 +34,7 @@ export function CreateUser() {
             <Label htmlFor="password">Senha</Label>
             <Input id="password" name="password" type="password" />
           </div>
-          <DialogClose>
+          <DialogClose asChild>
             <Button type="submit">Criar</Button>
           </DialogClose>
         </form>
