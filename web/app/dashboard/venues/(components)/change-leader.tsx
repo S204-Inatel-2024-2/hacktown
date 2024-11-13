@@ -34,9 +34,12 @@ export function ChangeLeader({ venue }: ChangeLeaderProps) {
       next: {
         tags: ['users'],
       },
+      cache: 'force-cache',
     });
 
     const data = await response.json();
+
+    console.log(data);
 
     setUsers(data.users);
   }, []);

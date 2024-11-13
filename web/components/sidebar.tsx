@@ -1,6 +1,6 @@
 'use client';
 
-import { Crown, MapPinned, Users } from 'lucide-react';
+import { Crown, MapPinned, MicVocal, Users } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 export const Sidebar = () => {
@@ -35,6 +35,14 @@ export const Sidebar = () => {
             <a href="/dashboard/venues" className="flex gap-2">
               <MapPinned size={20} />
               Venues
+            </a>
+          </li>
+          <li
+            className={`p-4 ${location === '/dashboard/lectures' ? 'bg-white text-black rounded-s-2xl hover:bg-opacity-95' : 'hover:bg-black hover:opacity-70'}`}
+          >
+            <a href="/dashboard/lectures" className="flex gap-2">
+              <MicVocal size={20} />
+              Palestras
             </a>
           </li>
         </ul>

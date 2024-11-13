@@ -13,6 +13,7 @@ async function getData(): Promise<User[]> {
     next: {
       tags: ['users'],
     },
+    cache: 'force-cache',
   });
 
   if (!response.ok) {
