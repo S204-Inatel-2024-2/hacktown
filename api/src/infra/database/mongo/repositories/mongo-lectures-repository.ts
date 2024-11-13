@@ -32,6 +32,6 @@ export class MongoLecturesRepository implements LecturesRepository {
   }
 
   async list(): Promise<Lecture[]> {
-    return this.lectureModel.find().exec();
+    return this.lectureModel.find().populate('venue').exec();
   }
 }

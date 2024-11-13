@@ -1,16 +1,19 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
+import { Venue } from '../../venues/(components)/columns';
+import { User } from '../../users/(components)/columns';
 
 export type Lecture = {
   _id: string;
   name: string;
   description: string;
-  location: string;
   capacity: number;
   startDate: Date;
   endDate: Date;
-  venues: string[];
+  venue: Venue;
+  speaker: string[];
+  participants: User[];
 };
 
 export const columns: ColumnDef<Lecture>[] = [
@@ -19,7 +22,7 @@ export const columns: ColumnDef<Lecture>[] = [
     header: 'Nome',
   },
   {
-    accessorKey: 'location',
+    accessorKey: 'venue.address',
     header: 'Local',
   },
   {

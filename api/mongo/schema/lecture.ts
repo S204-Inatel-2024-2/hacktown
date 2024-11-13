@@ -15,9 +15,6 @@ export class Lecture {
   description: string;
 
   @Prop({ required: true })
-  location: string;
-
-  @Prop({ required: true })
   capacity: number;
 
   @Prop({ required: true })
@@ -26,8 +23,14 @@ export class Lecture {
   @Prop({ required: true })
   endDate: Date;
 
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Venue' }] })
-  venues?: Types.ObjectId; // Referência para os locais (venues)
+  @Prop({ type: Types.ObjectId, ref: 'Venue' })
+  venue?: Types.ObjectId; // Referência para os locais (venues)
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Speaker' }] })
+  speaker?: Types.ObjectId[]; // Palestrante responsável pela palestra
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }] })
+  participants?: Types.ObjectId[]; // Lista de participantes inscritos na palestra
 }
 
 export const LectureSchema = SchemaFactory.createForClass(Lecture);

@@ -5,7 +5,7 @@ import { ChangeLeader } from './change-leader';
 import { User } from '../../users/(components)/columns';
 
 export type Venue = {
-  id: string;
+  _id: string;
   name: string;
   address: string;
   capacity: number;

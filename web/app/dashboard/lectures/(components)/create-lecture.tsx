@@ -9,9 +9,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { getData } from '@/app/_actions/list-venues';
+import { Venue } from '../../venues/(components)/columns';
 
-export function CreateLecture() {
+export async function CreateLecture() {
+  const data = await getData();
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -31,8 +36,21 @@ export function CreateLecture() {
             <Input id="description" name="description" type="text" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="location">Local</Label>
-            <Input id="location" name="location" type="text" />
+            <Label htmlFor="venue">Local</Label>
+            <Select name="venue">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Local" />
+              </SelectTrigger>
+              <SelectContent>
+                {data &&
+                  data.length &&
+                  data.map((venue: Venue) => (
+                    <SelectItem key={venue._id} value={venue._id}>
+                      {venue.address}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="space-y-2">
             <Label htmlFor="capacity">Capacidade</Label>

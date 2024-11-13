@@ -1,28 +1,7 @@
 import { DataTable } from '@/components/data-table';
-import { cookies } from 'next/headers';
-import { Venue, columns } from './(components)/columns';
+import { columns } from './(components)/columns';
 import { CreateVenue } from './(components)/create-venue';
-
-async function getData(): Promise<Venue[]> {
-  const token = cookies().get('token')?.value;
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/venues`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    next: {
-      tags: ['venues'],
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  const data = await response.json();
-
-  return data.venues;
-}
+import { getData } from '@/app/_actions/list-venues';
 
 export default async function Page() {
   const data = await getData();

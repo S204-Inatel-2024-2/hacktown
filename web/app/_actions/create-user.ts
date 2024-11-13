@@ -13,6 +13,7 @@ export async function createUser(formData: FormData) {
       username: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),
+      event: '67155abeab17c015835aed59',
     }),
   });
 

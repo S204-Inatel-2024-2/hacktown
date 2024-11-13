@@ -25,7 +25,7 @@ export async function ChangeRole() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Atribuir líder de staff</DialogTitle>
+          <DialogTitle>Atribuir palestrante</DialogTitle>
         </DialogHeader>
         <form className="space-y-3" action={changeRole}>
           <Select name="email">
@@ -36,7 +36,7 @@ export async function ChangeRole() {
               {data &&
                 data.length &&
                 data.map((user: User) => {
-                  if (user.role === 'staff_leader') return null;
+                  if (user.role === 'speaker') return null;
 
                   return (
                     <SelectItem key={user.email} value={user.email}>
@@ -46,7 +46,7 @@ export async function ChangeRole() {
                 })}
             </SelectContent>
           </Select>
-          <Input id="role" name="role" type="text" value="staff_leader" className="hidden" />
+          <Input id="role" name="role" type="text" value="speaker" className="hidden" />
           <DialogClose asChild>
             <Button type="submit">Atribuir</Button>
           </DialogClose>

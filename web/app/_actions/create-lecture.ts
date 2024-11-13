@@ -21,7 +21,7 @@ export async function createLecture(formData: FormData) {
     body: JSON.stringify({
       name: formData.get('name'),
       description: formData.get('description'),
-      location: formData.get('location'),
+      venue: formData.get('venue'),
       capacity: formData.get('capacity'),
       startDate: startDate + 'T' + startTime,
       endDate: endDate + 'T' + endTime,

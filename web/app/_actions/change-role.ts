@@ -15,7 +15,7 @@ export async function changeRole(formData: FormData) {
     },
     body: JSON.stringify({
       email: formData.get('email'),
-      role: 'staff_leader',
+      role: formData.get('role'),
     }),
   });
 
