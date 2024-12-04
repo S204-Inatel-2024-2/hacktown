@@ -23,6 +23,13 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Create .env file
+        run: |
+          echo DATABASE_URL_TEST=${{ secrets.DATABASE_URL_TEST }} >> ./api/.env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> ./api/.env
+          echo JWT_PUBLIC_KEY=${{ secrets.JWT_PUBLIC_KEY }} >> ./api/.env
+          echo JWT_PRIVATE_KEY=${{ secrets.JWT_PRIVATE_KEY }} >> ./api/.env
+
       - name: Install dependencies
         working-directory: ./api
         run: npm install
