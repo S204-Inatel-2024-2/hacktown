@@ -13,9 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { User } from '../../users/(components)/columns';
 import { Venue } from './columns';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { env } from '@/lib/env';
-import { getCookie } from '@/app/_actions/cookie';
 import { changeLeader } from '@/app/_actions/change-leader';
+import { getData } from '@/app/_actions/list-users-by-role';
 
 type ChangeLeaderProps = {
   venue: Venue;
@@ -25,23 +24,9 @@ export function ChangeLeader({ venue }: ChangeLeaderProps) {
   const [users, setUsers] = useState<User[]>([]);
 
   const fetchData = useCallback(async () => {
-    const cookie = await getCookie('token');
+    const data = await getData('staff_leader');
 
-    const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/users/staff_leader`, {
-      headers: {
-        Authorization: `Bearer ${cookie}`,
-      },
-      next: {
-        tags: ['users'],
-      },
-      cache: 'force-cache',
-    });
-
-    const data = await response.json();
-
-    console.log(data);
-
-    setUsers(data.users);
+    setUsers(data);
   }, []);
 
   useEffect(() => {

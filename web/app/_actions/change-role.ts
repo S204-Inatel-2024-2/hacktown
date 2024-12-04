@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 
 export async function changeRole(formData: FormData) {
   const token = cookies().get('token')?.value;
+  const role = formData.get('role') as string;
 
   const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/user/role`, {
     method: 'PUT',
@@ -15,7 +16,7 @@ export async function changeRole(formData: FormData) {
     },
     body: JSON.stringify({
       email: formData.get('email'),
-      role: formData.get('role'),
+      role,
     }),
   });
 
@@ -23,5 +24,5 @@ export async function changeRole(formData: FormData) {
     throw new Error('Not possible to update role');
   }
 
-  revalidateTag('users');
+  revalidateTag(role);
 }

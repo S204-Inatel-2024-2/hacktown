@@ -28,7 +28,7 @@ export async function CreateLecture() {
         </DialogHeader>
         <form className="space-y-3" action={createLecture}>
           <div className="space-y-2">
-            <Label htmlFor="name">Nome completo</Label>
+            <Label htmlFor="name">Nome da palestra</Label>
             <Input id="name" name="name" type="text" />
           </div>
           <div className="space-y-2">

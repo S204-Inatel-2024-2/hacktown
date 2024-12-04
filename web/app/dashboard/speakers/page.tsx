@@ -11,7 +11,7 @@ async function getData(): Promise<User[]> {
       Authorization: `Bearer ${token}`,
     },
     next: {
-      tags: ['users'],
+      tags: ['users-speaker'],
     },
     cache: 'force-cache',
   });
